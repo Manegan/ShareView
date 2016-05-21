@@ -7,21 +7,24 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+
     tools:context="layouts.android.umlv.fr.shareview.MainActivity">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFCCCCCC"
         android:orientation="vertical"
-        tools:context=".MainActivity" >
-
+        tools:context=".MainActivity"
+        android:id="@+id/drawingBoard"
+        >
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:id="@+id/toolBar"
+            >
 
             <ImageButton
                 android:id="@+id/new_btn"
@@ -51,7 +54,6 @@
                 android:contentDescription="@string/save"
                 android:src="@drawable/save" />
         </LinearLayout>
-
         <layouts.android.umlv.fr.shareview.DrawingView
             android:id="@+id/drawing"
             android:layout_width="fill_parent"
@@ -60,14 +62,14 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="3dp"
-            android:layout_weight="1"
             android:background="#FFFFFFFF" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:id="@+id/colorsBar">
             <LinearLayout
                 android:id="@+id/paint_colors"
                 android:layout_width="wrap_content"
@@ -199,5 +201,32 @@
                     android:tag="#FF000000" />
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+
+      </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/usersList"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/drawingBoard">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="TEST j en ai marre"
+        />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/messages"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/drawingBoard"
+        android:layout_toEndOf="@id/usersList"
+        android:layout_toRightOf="@id/usersList">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="TEST j en ai marre"/>
+    </RelativeLayout>
+
 </RelativeLayout>
