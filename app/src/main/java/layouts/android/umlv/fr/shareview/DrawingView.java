@@ -86,6 +86,7 @@ public class DrawingView extends View {
             case MotionEvent.ACTION_UP:
                 drawCanvas.drawPath(drawPath, drawPaint);
                 drawPath.reset();
+                Paint paint = new Paint();
                 break;
             default:
                 return false;
