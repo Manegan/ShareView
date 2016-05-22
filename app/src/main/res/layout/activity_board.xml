@@ -24,7 +24,7 @@
         android:text="Ellipse"
         android:onClick="changeCursorEllipsis" />
 
-    <fr.cartesianfox.testshapejson.DrawingView
+    <layouts.android.umlv.fr.shareview.DrawingView
         android:id="@+id/canvas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
