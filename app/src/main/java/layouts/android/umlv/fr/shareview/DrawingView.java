@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DrawingView extends View{
     private String selectedTool;
     private Paint drawPaint, canvasPaint;
@@ -19,7 +22,9 @@ public class DrawingView extends View{
     private Bitmap canvasBitmap;
     private int startingX = 0;
     private int startingY = 0;
-
+    private int endX = 0;
+    private int endY = 0;
+    private List<Shapes> shapes = new ArrayList<>();
 
     public DrawingView(Context context) {
         super(context);
@@ -63,6 +68,9 @@ public class DrawingView extends View{
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
+        for (Shapes s : shapes) {
+            s.draw(canvas);
+        }
     }
 
     @Override
@@ -79,20 +87,32 @@ public class DrawingView extends View{
                 // Do things for polyline, but eh, do we realize this feature ?
                 break;
             case MotionEvent.ACTION_UP:
+                endX = Math.round(touchX);
+                endY = Math.round(touchY);
+                int[] color = {255, 255, 255, 255};
+                int[] fill = {255, 0, 0, 0};
                 Log.v(getClass().getName(), "Drawing something with : "+ selectedTool);
                 switch (selectedTool) {
                     case "Line":
+                        List<Integer[]> coords = new ArrayList<>();
+                        Integer[] p1 = {startingX, startingX};
+                        Integer[] p2 = {endX, endY};
+                        coords.add(p1);
+                        coords.add(p2);
+                        shapes.add(new LineShape(coords, 0.02f, color, fill));
                         // TODO : new Line(), send it to server
-                        drawCanvas.drawLine(startingX, startingY, touchX, touchY,drawPaint);
+                        drawCanvas.drawLine(startingX, startingY, endX, endY, drawPaint);
                         break;
                     case "Rectangle":
+                        shapes.add(new SquareShape(startingX, startingY, endX, endY, 0.02f, color, fill));
                         // TODO : new Rectangle(), send it to server
-                        drawCanvas.clipRect(startingX, startingY, touchX, touchY);
+                        drawCanvas.drawRect(startingX, startingY, endX, endY, drawPaint);
                         break;
                     case "Ellipsis":
                         // TODO : new Ellipsis(), send it to server
-                        int radius = 10; // TODO : compute radius with touchX and touchY
-                        drawCanvas.drawCircle(startingX, startingY, radius, drawPaint);
+                        double radius = Math.sqrt(Math.pow(startingX-endX,2)+Math.pow(startingY-endY,2));
+                        shapes.add(new CircleShape(startingX, startingY, (int) radius, (int) radius, 0.02f, color, fill));
+                        drawCanvas.drawCircle(startingX, startingY, (int) radius, drawPaint);
                         break;
                     default:
                         Log.v(getClass().getName(), "Unknown tool");

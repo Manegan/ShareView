@@ -1,6 +1,9 @@
 package layouts.android.umlv.fr.shareview;
 
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+
 /**
  * Created by François on 22/05/2016.
  */
@@ -16,6 +19,15 @@ public class CircleShape extends AbstractShape implements Shapes {
         this.centerY = centerY;
         this.radiusX = radiusX;
         this.radiusY = radiusY;
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setStrokeWidth(super.strokeWidth);
+        paint.setARGB(super.strokeColor[0],super.strokeColor[1],super.strokeColor[2],super.strokeColor[3]);
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawCircle(centerX, centerY, radiusX, paint);
     }
 
     @Override

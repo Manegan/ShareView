@@ -11,9 +11,9 @@ import java.util.List;
  * Created by François on 22/05/2016.
  */
 public abstract class AbstractShape {
-    private float strokeWidth;
-    private int[] strokeColor;
-    private int[] fillColor;
+    protected float strokeWidth;
+    protected int[] strokeColor;
+    protected int[] fillColor;
 
 
     public AbstractShape(float strokeWidth, int[] strokeColor, int[] fillColor) {

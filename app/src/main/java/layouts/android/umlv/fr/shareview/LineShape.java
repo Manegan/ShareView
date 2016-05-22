@@ -1,5 +1,8 @@
 package layouts.android.umlv.fr.shareview;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +17,17 @@ public class LineShape extends AbstractShape implements Shapes {
         this.coordinates = coordinates;
     }
 
+
+    @Override
+    public void draw(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setStrokeWidth(super.strokeWidth);
+        paint.setARGB(super.strokeColor[0],super.strokeColor[1],super.strokeColor[2],super.strokeColor[3]);
+        paint.setStyle(Paint.Style.STROKE);
+        for (int i = 1; i < coordinates.size(); i++) {
+            canvas.drawLine(coordinates.get(i-1)[0], coordinates.get(i-1)[1], coordinates.get(i)[0], coordinates.get(i)[1], paint);
+        }
+    }
 
     @Override
     public String toJson() {
