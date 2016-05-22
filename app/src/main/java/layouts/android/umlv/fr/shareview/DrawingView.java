@@ -11,10 +11,15 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class DrawingView extends View{
+    private String boardName = "default";
+    private String author = "admin";
+
     private String selectedTool;
     private Paint drawPaint, canvasPaint;
     private int paintColor = 0xFF660000;
@@ -59,7 +64,7 @@ public class DrawingView extends View{
 
         canvasPaint = new Paint(Paint.DITHER_FLAG);
 
-        canvasBitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
+        canvasBitmap = Bitmap.createBitmap(2000, 2000, Bitmap.Config.ARGB_8888);
         drawCanvas = new Canvas(canvasBitmap);
         selectedTool = "Line";
     }
@@ -77,6 +82,8 @@ public class DrawingView extends View{
     public boolean onTouchEvent(MotionEvent event) {
         float touchX = event.getX();
         float touchY = event.getY();
+        HttpBundle bundle;
+        AsyncHttpRequester ahttpr;
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -99,19 +106,44 @@ public class DrawingView extends View{
                         Integer[] p2 = {endX, endY};
                         coords.add(p1);
                         coords.add(p2);
-                        shapes.add(new LineShape(coords, 0.02f, color, fill));
+                        LineShape line = new LineShape(coords, 0.02f, color, fill);
+                        shapes.add(line);
                         // TODO : new Line(), send it to server
+
+                        ahttpr = new AsyncHttpRequester();
+                        bundle = new HttpBundle();
+                        bundle.setMethod("POST");
+                        bundle.setQueueName(boardName);
+                        bundle.setAuthor(author);
+                        bundle.setMessage(line.toJson());
                         drawCanvas.drawLine(startingX, startingY, endX, endY, drawPaint);
                         break;
                     case "Rectangle":
-                        shapes.add(new SquareShape(startingX, startingY, endX, endY, 0.02f, color, fill));
+                        SquareShape rect = new SquareShape(startingX, startingY, endX, endY, 0.02f, color, fill);
+                        shapes.add(rect);
                         // TODO : new Rectangle(), send it to server
+
+                        ahttpr = new AsyncHttpRequester();
+                        bundle = new HttpBundle();
+                        bundle.setMethod("POST");
+                        bundle.setQueueName(boardName);
+                        bundle.setAuthor(author);
+                        bundle.setMessage(rect.toJson());
                         drawCanvas.drawRect(startingX, startingY, endX, endY, drawPaint);
                         break;
                     case "Ellipsis":
                         // TODO : new Ellipsis(), send it to server
                         double radius = Math.sqrt(Math.pow(startingX-endX,2)+Math.pow(startingY-endY,2));
-                        shapes.add(new CircleShape(startingX, startingY, (int) radius, (int) radius, 0.02f, color, fill));
+                        CircleShape circle = new CircleShape(startingX, startingY, (int) radius, (int) radius, 0.02f, color, fill);
+
+                        ahttpr = new AsyncHttpRequester();
+                        bundle = new HttpBundle();
+                        bundle.setMethod("POST");
+                        bundle.setQueueName(boardName);
+                        bundle.setAuthor(author);
+                        bundle.setMessage(circle.toJson());
+
+                        shapes.add(circle);
                         drawCanvas.drawCircle(startingX, startingY, (int) radius, drawPaint);
                         break;
                     default:
@@ -136,4 +168,7 @@ public class DrawingView extends View{
         invalidate();
     }
 
+    public void addShape(String output) throws JSONException {
+        shapes.add(AbstractShape.fromJson(output));
+    }
 }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="layouts.android.umlv.fr.shareview.BoardActivity"
-    android:background="#ed1d1d"
+    android:background="#bbb"
     android:useDefaultMargins="false"
     android:alignmentMode="alignBounds"
     android:columnCount="4">
