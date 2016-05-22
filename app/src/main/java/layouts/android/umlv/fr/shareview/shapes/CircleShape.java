@@ -1,5 +1,9 @@
 package layouts.android.umlv.fr.shareview.shapes;
 
+import java.util.Map;
+
+import layouts.android.umlv.fr.shareview.json.JSONObject;
+
 /**
  * Created by François on 22/05/2016.
  */
@@ -19,8 +23,9 @@ public class CircleShape extends AbstractShape implements Shapes {
 
     @Override
     public String toJson() {
-        return " {\"draw\": {\"shape\":\"ellipsis\",\"center\": [" +
-                centerX + "," + centerY + "],\"radius\":[" + radiusX + ","
-                + radiusY + "],\"options\": " + super.asJson() + "}}";
+        return " {\"draw\": {\"shape\":\"ellipsis\",\n\"center\": [" +
+                centerX + "," + centerY + "],\n\"radius\":[" + radiusX + ","
+                + radiusY + "],\n\"options\": \n" + super.asJson() + "}}";
     }
+
 }
