@@ -1,38 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="4"
     tools:context="layouts.android.umlv.fr.shareview.BoardActivity"
-    android:background="#ed1d1d">
-    <TableRow>
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Ligne"
-            android:onClick="changeCursorLine" />
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Rectangle"
-            android:onClick="changeCursorRectangle" />
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Ellipse"
-            android:onClick="changeCursorEllipse" />
-    </TableRow>
-    <TableRow
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
-        <TextView
-            android:id="@+id/canvas"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FFFFFF"
-            android:text="gello"
-            />
-    </TableRow>
+    android:background="#ed1d1d"
+    android:useDefaultMargins="false"
+    android:alignmentMode="alignBounds"
+    android:columnCount="4">
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Ligne"
+        android:onClick="changeCursorLine" />
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Rectangle"
+        android:onClick="changeCursorRectangle" />
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Ellipse"
+        android:onClick="changeCursorEllipsis" />
 
-</TableLayout>
+    <fr.cartesianfox.testshapejson.DrawingView
+        android:id="@+id/canvas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:layout_columnSpan="4"
+        android:layout_gravity="left"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="60dp" />
+
+</GridLayout>

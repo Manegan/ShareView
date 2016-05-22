@@ -1,12 +1,12 @@
 package layouts.android.umlv.fr.shareview;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class BoardActivity extends AppCompatActivity {
+    private String selectedTool = "Line";
+    private DrawingView canvas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,9 +17,27 @@ public class BoardActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Bitmap b = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
-        Canvas c = new Canvas(b);
-        View v = findViewById(R.id.canvas);
-        v.draw(c);
+        canvas = (DrawingView) findViewById(R.id.canvas);
+
     }
+
+    public void changeCursorLine(View view) {
+        selectedTool = "Line";
+        changeTool(selectedTool);
+    }
+
+    public void changeCursorRectangle(View view) {
+        selectedTool = "Rectangle";
+        changeTool(selectedTool);
+    }
+
+    public void changeCursorEllipsis(View view) {
+        selectedTool = "Ellipsis";
+        changeTool(selectedTool);
+    }
+
+    private void changeTool(String toolName) {
+        canvas.setSelectedTool(toolName);
+    }
+
 }
