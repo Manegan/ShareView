@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="start_new">Nouveau</string>
+    <string name="brush">Pinceau</string>
+    <string name="erase">Effacer</string>
+    <string name="save">Sauvegarder</string>
+    <string name="paint">Peindre</string>
+    <string name="sml">Fin</string>
+    <string name="med">Moyen</string>
+    <string name="lrg">Large</string>
+    <string name="lineButtonText">Ligne</string>
+    <string name="rectangleButtonText">Rectangle</string>
+    <string name="ellipsisButtonText">Ellipse</string>
+    <string name="introductionText">Choisissez votre plateau !</string>
+    <string name="newBoardText">Nouveau plateau</string>
+    <string name="roomIdText">ID salle</string>
+    <string name="joinBoardText">Rejoindre plateau</string>
+</resources>

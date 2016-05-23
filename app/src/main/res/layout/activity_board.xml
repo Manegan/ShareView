@@ -11,17 +11,17 @@
     <Button
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Ligne"
+        android:text="@string/lineButtonText"
         android:onClick="changeCursorLine" />
     <Button
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Rectangle"
+        android:text="@string/rectangleButtonText"
         android:onClick="changeCursorRectangle" />
     <Button
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Ellipse"
+        android:text="@string/ellipsisButtonText"
         android:onClick="changeCursorEllipsis" />
 
     <layouts.android.umlv.fr.shareview.DrawingView

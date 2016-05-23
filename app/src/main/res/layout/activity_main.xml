@@ -10,14 +10,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nouvelle partie ou rejoindre partie ?" />
+            android:text="@string/introductionText" />
     </TableRow>
 
     <TableRow>
         <Button
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="Nouvelle Partie"
+            android:text="@string/newBoardText"
             android:onClick="newGame" />
     </TableRow>
     <TableRow>
@@ -25,12 +25,12 @@
             android:id="@+id/joinRoomId"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="Room ID"
+            android:hint="@string/roomIdText"
             android:inputType="text" />
         <Button
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="Rejoindre Partie"
+            android:text="@string/joinBoardText"
             android:onClick="loadGame" />
     </TableRow>
 </TableLayout>

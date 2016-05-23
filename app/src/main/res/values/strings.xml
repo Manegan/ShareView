@@ -8,4 +8,11 @@
     <string name="sml">Small</string>
     <string name="med">Medium</string>
     <string name="lrg">Large</string>
+    <string name="lineButtonText">Line</string>
+    <string name="rectangleButtonText">Rectangle</string>
+    <string name="ellipsisButtonText">Ellipsis</string>
+    <string name="introductionText">Choose your board !</string>
+    <string name="newBoardText">New Board</string>
+    <string name="roomIdText">Room ID</string>
+    <string name="joinBoardText">Join Board</string>
 </resources>
